@@ -4,10 +4,10 @@ Tensorflow implementation of "Handwritten Indic Character Recognition using Caps
 ## Initial Setup
 1. Setup the environment & install all the dependencies:  
 ``pip install -r requirements.txt``
-2. Download the datasets [Bangla Digits](https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/cmaterdb/CMATERdb%203.1.1.rar), [Telugu Digits](https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/cmaterdb/CMATERdb%203.4.1.rar), [Devanagari Digits](https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/cmaterdb/CMATERdb%203.2.1.rar)
+2. Download the datasets [Bangla Digits](https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/cmaterdb/CMATERdb%203.1.1.rar), [Telugu Digits](https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/cmaterdb/CMATERdb%203.4.1.rar), [Devanagari Digits](https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/cmaterdb/CMATERdb%203.2.1.rar) and rename as **bangla, devanagari, telugu** in ``data`` directory
 3. ``python data/process_dataset.py``
-4. If you want to convert images into label specific folder then: 
-``python data/process_dataset.py --no-csv``
+4. If you want to create csv file from images folder then: 
+``python data/process_dataset.py --csv``
 
 ## Running
 TODO: Add command for starting the training & testing
@@ -22,8 +22,7 @@ TODO: Add command for starting the training & testing
 7. ``utils/``: Contains utility function like the process_config which is used to parse the configuration file.
 
 ## Acknowledgements
-A major thanks to authors of the paper.  
-We also thank the authors of pytorch template [https://github.com/MrGemy95/Tensorflow-Project-Template](https://github.com/MrGemy95/Tensorflow-Project-Template) which served as a starting point for our project.
+A major thanks to authors of the paper.   
 
 ## Reference
     @misc{1901.00166,

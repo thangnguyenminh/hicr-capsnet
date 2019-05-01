@@ -82,6 +82,6 @@ def process_dataset(directories=directories, to_csv=True):
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
-	parser.add_argument('--no-csv', dest='to_csv', action='store_false')
+	parser.add_argument('--csv', dest='to_csv', action='store_true')
 	args = parser.parse_args()
 	process_dataset(directories=directories, to_csv=args.to_csv)
