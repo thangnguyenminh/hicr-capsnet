@@ -10,7 +10,10 @@ Tensorflow implementation of "Handwritten Indic Character Recognition using Caps
 ``python data/process_dataset.py --csv``
 
 ## Running
-TODO: Add command for starting the training & testing
+1. For starting training & validation
+``python main.py -c configs/hicr_capsnet_config.json``
+2. If you want to see some sample images before training
+``python main.py -c configs/hicr_capsnet_config.json -s``
 
 ## Code Description
 1. ``base``: Contains the base model and base trainer. The model and trainer are inherited from here.
