@@ -9,5 +9,10 @@ def get_args():
         metavar='C',
         default='None',
         help='The Configuration file')
+    argparser.add_argument(
+        '-s', '--show_img',
+        dest='show_img',
+        action='store_true',
+        help='Show Sample Images')
     args = argparser.parse_args()
     return args

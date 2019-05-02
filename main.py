@@ -2,15 +2,18 @@ import random
 
 import matplotlib.pyplot as plt
 import numpy as np
+import tensorflow as tf
 from keras.utils import to_categorical
 
 from data_loader.hicr_capsnet_data_loader import HICRCapsNetDataLoader
+from models.capsnet_model import CapsNetModel
 from trainers.hicr_capsnet_trainer import HICRCapsNetModelTrainer
 from utils.config import process_config
 from utils.dataset import get_label
 from utils.dirs import create_dirs
 from utils.utils import get_args
 
+tf.logging.set_verbosity(tf.logging.ERROR)
 
 def main():
     """ Main Driver Program """
@@ -30,31 +33,31 @@ def main():
     data_loader = HICRCapsNetDataLoader(config)
 
     # Some Stats & Visualizations
-    x_train, y_train = data_loader.get_train_data()
-    x_test, y_test = data_loader.get_test_data()
-    print("Training on", len(x_train), "images")
-    print("Testing on", len(x_test), "images")
-    n_samples = 5
-    plt.figure(figsize=(n_samples * 2, 3))
-    for index in range(n_samples):
-        plt.subplot(1, n_samples, index + 1)
-        idx = random.randint(0, len(x_train))
-        plt.imshow(x_train[idx])
-        plt.title("Label:" + get_label(y_train[idx]))
-        plt.axis("off")
+    x, y = data_loader.get_data()
+    print("Training & Validation on", len(x), "images")
+    if args.show_img:
+        n_samples = 5
+        plt.figure(figsize=(n_samples * 2, 3))
+        for index in range(n_samples):
+            plt.subplot(1, n_samples, index + 1)
+            idx = random.randint(0, len(x))
+            plt.imshow(x[idx])
+            plt.title("Label:" + get_label(y[idx]))
+            plt.axis("off")
 
-    plt.show()
+        plt.show()
 
     # Model Instance
     print("Creating the model...")
+    model = CapsNetModel(config)
 
     # Trainer
     print("Creating the trainer...")
-    trainer = HICRCapsNetModelTrainer(None, data_loader.get_train_data(), config)
+    trainer = HICRCapsNetModelTrainer(model.model, ([x, y], [y, x]), config)
     
     # Start training
     print("Starting to train the model...")
-
+    trainer.train()
 
 if __name__ == "__main__":
     main()

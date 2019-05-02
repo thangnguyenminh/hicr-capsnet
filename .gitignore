@@ -108,3 +108,4 @@ data/csv/*
 data/digits/*
 data/training/*
 .DS_Store
+experiments/

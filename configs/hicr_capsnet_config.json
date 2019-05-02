@@ -3,18 +3,22 @@
         "name": "hicr_capsnet"
     },
     "model":{
+        "num_classes": 10,
+        "input_shape": [28, 28, 3],
+        "routings": 3,
+        "learning_decay": 0.9,
         "learning_rate": 0.001,
-        "optimizer": "adam"
+        "lam_recon": 0.392
     },
     "trainer":{
-        "num_epochs": 50,
-        "batch_size": 64,
-        "validation_split":0.25,
+        "num_epochs": 2,
+        "batch_size": 16,
+        "validation_split":0.3333,
         "verbose_training": true
     },
     "callbacks":{
-        "checkpoint_monitor": "val_loss",
-        "checkpoint_mode": "min",
+        "checkpoint_monitor": "val_capsule_output_acc",
+        "checkpoint_mode": "max",
         "checkpoint_save_best_only": true,
         "checkpoint_save_weights_only": true,
         "checkpoint_verbose": true,
