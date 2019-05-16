@@ -1,6 +1,6 @@
 import tensorflow as tf
 import layers
-import tf.nn as F
+import tensorflow.nn as nn
 
 
 class CapsNet(tf.keras.Model):
@@ -25,8 +25,8 @@ class CapsNet(tf.keras.Model):
 
         v_c = tf.math.sqrt(tf.reduce_sum(x**2, axis=2, keepdims=True))
 
-        left = tf.reshape(F.relu(0.9 - v_c), (batch_size, -1))
-        right = tf.reshape(F.relu(v_c - 0.1), (batch_size, -1))
+        left = tf.reshape(nn.relu(0.9 - v_c), (batch_size, -1))
+        right = tf.reshape(nn.relu(v_c - 0.1), (batch_size, -1))
 
         loss = labels * left + 0.5 * (1.0 - labels) * right
         loss = tf.metrics.mean(tf.reduce_sum(loss, axis=1))
